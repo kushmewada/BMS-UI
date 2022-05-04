@@ -10,10 +10,11 @@ import { User } from '../_models/user.model';
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('currentUser')||'{}')
+      JSON.parse(localStorage.getItem('currentUser') || '{}')
     );
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -22,27 +23,32 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(email: string, password: string) {
+  login(username: string, password: string) {
     return this.http
       .post<any>(`${environment.APIUrl}user/login/`, {
-        email,
+        username,
         password,
       })
       .pipe(
         map((user) => {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.loggedIn.next(true);
+          // localStorage.setItem('myuserId', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
       );
   }
+  get isLoggedIn() {
+    return this.loggedIn.asObservable(); // {2}
+  }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('myuserId');
+    this.loggedIn.next(false);
     this.currentUserSubject.next(null!);
-    return this.http.get(`${environment.APIUrl}user/logout/`)
+    var user_id = localStorage.getItem('myuserId')
+    return this.http.get(`${environment.APIUrl}user/logout/?user_id=${user_id}`);
   }
 
   signUp(val: any) {

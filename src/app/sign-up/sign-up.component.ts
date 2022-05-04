@@ -5,8 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthenticationService } from '../_services/authentication.service'; 
-import { ConfirmedValidator } from '../_helpers/confirmed.validator'; 
+import { ToastrService } from 'ngx-toastr';
+
+import { AuthenticationService } from '../_services/authentication.service';
+import { ConfirmedValidator } from '../_helpers/confirmed.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,10 +18,17 @@ import { ConfirmedValidator } from '../_helpers/confirmed.validator';
 })
 export class SignUpComponent implements OnInit {
   submit = false;
-  success = '';
+  // success = '';
+  loading = false;
   formGrp: FormGroup = new FormGroup({});
-  constructor(private service: AuthenticationService, private fb: FormBuilder) {
-    this.formGrp = fb.group(
+
+  constructor(
+    private service: AuthenticationService,
+    private fb: FormBuilder,
+    private router: Router,
+    private toastrService: ToastrService
+  ) {
+    this.formGrp = this.fb.group(
       {
         firstName: ['', [Validators.required, Validators.minLength(2)]],
         lastName: ['', [Validators.required, Validators.minLength(2)]],
@@ -50,58 +60,6 @@ export class SignUpComponent implements OnInit {
     );
   }
 
-  // firstName = new FormControl('', [
-  //   Validators.required,
-  //   Validators.minLength(2),
-  // ]);
-  // lastName = new FormControl('', [
-  //   Validators.required,
-  //   Validators.minLength(2),
-  // ]);
-  // email = new FormControl('', [Validators.required, Validators.email]);
-  // password = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern(
-  //     '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}'
-  //   ),
-  //   Validators.minLength(8),
-  // ]);
-  // confirm_password = new FormControl('', [Validators.required]);
-  // mNo = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern('[- +()0-9]{10,}'),
-  //   Validators.minLength(10),
-  //   Validators.maxLength(10),
-  // ]);
-
-  // formGrp = new FormGroup(
-  //   {
-  //     firstName: new FormControl('', [Validators.required]),
-  //     lastName: new FormControl('', [Validators.required]),
-  //     email: new FormControl('', [Validators.required, Validators.email]),
-  //     password: new FormControl('', [
-  //       Validators.required,
-  //       Validators.minLength(8),
-  //     ]),
-  //     confirm_password: new FormControl('', [
-  //       Validators.required,
-  //       Validators.minLength(8),
-  //     ]),
-  //     mNo: new FormControl('', [Validators.required]),
-  //   },
-
-  //   // CustomValidators.mustMatch('password', 'confirm_password')
-  // );
-
-  // formGrp = new FormGroup({
-  //   firstName: this.firstName,
-  //   lastName: this.lastName,
-  //   email: this.email,
-  //   password: this.password,
-  //   confirm_password: this.confirm_password,
-  //   mNo: this.mNo,
-  // });
-
   ngOnInit(): void {}
 
   get f() {
@@ -116,20 +74,35 @@ export class SignUpComponent implements OnInit {
     var val = {
       ...this.formGrp.value,
     };
-    this.success = JSON.stringify(this.formGrp.value);
+    // this.success = JSON.stringify(this.formGrp.value);
   }
 
   creatAc() {
     this.submit = true;
+
     if (this.formGrp.invalid) {
       return;
     }
+    this.loading = true;
     var val = {
       ...this.formGrp.value,
     };
-    this.service.signUp(val).subscribe((res:any) => {
-      alert(res.toString());
+    this.service.signUp(val).subscribe((res: any) => {
+      var alertMsg = res.alert;
+      var result = res.result;
+      if (result == true) {
+        console.log(res.alert, 'alaert responce');
+        // alert(alertMsg.toString(alert));
+        this.router.navigate(['log-in']);
+        this.toastrService.success(alertMsg);
+        console.log(val, 'value responce ');
+      } else {
+        this.loading = false;
+        this.toastrService.error(alertMsg);
+        console.log(alertMsg);
+      }
     });
-    console.log(val);
+
+    //
   }
 }

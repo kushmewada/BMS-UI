@@ -1,12 +1,20 @@
-<!-- <p>add-edit-dep works!</p> -->
-
-<div class="form-froup row">
-
-    <label class="col-sm-2 col-form-label">Department</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control" 
-        placeholder="Enter Department Name">
-    </div>
+<app-navbar></app-navbar>
+<div class="form-froup row my-3">
+    <form [formGroup]="formGrp" (ngSubmit)="uploadBlog()">
+        <label class="col-sm-2 col-form-label">Blog Title</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="postTitle" placeholder="Enter Blog Title" />
+        </div>
+        <label class="col-sm-2 col-form-label">Blog Image</label>
+        <div class="ml-3 bd-highlight" style="width: 40%">
+            <img [src]="" height="250px;" width="200px;" />
+            <input type="file" formcontrolname="postImage" class="mt-2" />
+        </div>
+        <label class="col-sm-2 col-form-label">Blog Disc</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="postDescription"  placeholder="Enter Blog Description" />
+        </div>
+        <button class="btn btn-primary my-3 mx-3">upload blog</button>
+    </form>
 </div>
-
-
+<app-footer></app-footer>

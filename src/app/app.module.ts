@@ -15,6 +15,16 @@ import { AuthenticationService } from './_services/authentication.service';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { BlogComponent } from './blog/blog.component';
 import { CreatblogComponent } from './blog/creatblog/creatblog.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NoValidationDirective } from './dir/no-validation.directive';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { UsrProComponent } from './usr-pro/usr-pro.component';
+import { AttendanceComponent } from './usr-pro/attendance/attendance.component';
+import { CommentsComponent } from './blog/comments/comments.component';
+import { LikesComponent } from './blog/likes/likes.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -24,7 +34,16 @@ import { CreatblogComponent } from './blog/creatblog/creatblog.component';
     LoginComponent,
     SignUpComponent,
     BlogComponent,
-    CreatblogComponent
+    CreatblogComponent,
+    NavbarComponent,
+    NoValidationDirective,
+    UsrProComponent,
+    AttendanceComponent,
+    CommentsComponent,
+    LikesComponent,
+    FooterComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -32,6 +51,12 @@ import { CreatblogComponent } from './blog/creatblog/creatblog.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 3000, // seconds
+      positionClass: 'toast-bottom-right'
+    }),
     
   ],
   providers: [

@@ -11,19 +11,27 @@ import { Observable } from 'rxjs';
 export class BlogService {
 
   constructor(private http : HttpClient) { }
-
+  
   postBlog(val:any) {
-    const blg : Blog[]=[{postTitle:'', postImage:'',postDescription:''}];
-    return this.http.post(`${environment.APIUrl}blog/`,val);
+    var user_id = localStorage.getItem('myuserId')
+    // console.log("user id from blog api", user_id);
+    // const blg : Blog[]=[{postTitle:'', postImage:'',postDescription:''}];
+    return this.http.post(`${environment.APIUrl}blog/?user_id=${user_id}`,val);
   }
 
-  UploadPhoto(val: any) {
-    return this.http.post(`${environment.APIUrl}/blog`, val);
-  }
+  // UploadPhoto(val: any) {
+  //   var user_id = localStorage.getItem('myuserId')
+  //   console.log("user id from blog api", user_id);
+  //   return this.http.post(`${environment.APIUrl}blog/${user_id}`, val);
+  // }
 
   getBlog():Observable<any[]>{
-    return this.http.get<any[]>(`${environment.APIUrl}blog/`);
+    var user_id = localStorage.getItem('myuserId')
+    // console.log("user id from blog api", user_id);
+    return this.http.get<any[]>(`${environment.APIUrl}blog/?user_id=${user_id}`);
   }
 
-
+  likeBlog(val:any){
+    return this.http.post(`${environment.APIUrl}blog/like/`,val);
+  }
 }

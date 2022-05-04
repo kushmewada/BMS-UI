@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { BlogService } from 'src/app/_services/blog.service';
 
@@ -8,19 +9,42 @@ import { BlogService } from 'src/app/_services/blog.service';
   styleUrls: ['./creatblog.component.css']
 })
 export class CreatblogComponent implements OnInit {
+  submit = false;
+  formGrp: FormGroup = new FormGroup({});
 
-  constructor(private BlogServ : BlogService) { }
-
-  @Input() blog:any;
-  postTitle : any;
-  postImage : any;
-  postDescription : any;
+  // postTitle:any;
+  // postDescription:any;
 
 
-  ngOnInit(): void {
-    this.postTitle = this.blog.postTitle;
-    this.postImage = this.blog.postImage;
-    this.postDescription = this.blog.postDescription;
+  constructor(private BlogServ : BlogService, private fb: FormBuilder) { 
+    this.formGrp = this.fb.group(
+      {
+        postTitle: ['',[Validators.required]],
+        postDescription: ['',[Validators.required]],
+        // postImage:['',[Validators.required]]
+      }
+    );
+  }
+
+  get f() {
+    return this.formGrp.controls;
+  }
+
+  ngOnInit(): void { }
+
+  // blogs : any = [];
+
+  uploadBlog(){
+    this.submit=true
+    if(this.formGrp.invalid){
+      return
+    }
+    var val = {
+      ...this.formGrp.value,
+    }
+    this.BlogServ.postBlog(val).subscribe(res =>{
+      alert(res.toString());
+    })
   }
 
 }

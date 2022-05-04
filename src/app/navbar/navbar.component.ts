@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthenticationService } from './_services/authentication.service';
-import { User } from './_models/user.model';
 import { Observable } from 'rxjs';
+import { User } from '../_models/user.model';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class AppComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   currentUser!: User;
   nav = true
   isLoggedIn$: Observable<boolean> | undefined;  

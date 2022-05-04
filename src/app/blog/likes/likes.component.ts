@@ -1,23 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  FormControl,
-  Validators,
-} from '@angular/forms';
-
-import { BlogService } from '../_services/blog.service';
-import { Blog } from '../_models/blog.model';
+import { FormArray, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Blog } from 'src/app/_models/blog.model';
+
+import { BlogService } from 'src/app/_services/blog.service';
 
 @Component({
-  selector: 'app-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css'],
+  selector: 'app-likes',
+  templateUrl: './likes.component.html',
+  styleUrls: ['./likes.component.css']
 })
-export class BlogComponent implements OnInit {
-  
+export class LikesComponent implements OnInit {
   MyEmp: Blog[] = [];
   items!: FormArray;
 
@@ -52,7 +45,4 @@ export class BlogComponent implements OnInit {
     });
   }
 
-  createBlog() {
-    this.router.navigate(['creatBlog']);
-  }
 }
