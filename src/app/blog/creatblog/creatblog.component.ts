@@ -1,50 +1,67 @@
+
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { BlogService } from 'src/app/_services/blog.service';
 
 @Component({
   selector: 'app-creatblog',
   templateUrl: './creatblog.component.html',
-  styleUrls: ['./creatblog.component.css']
+  styleUrls: ['./creatblog.component.css'],
 })
 export class CreatblogComponent implements OnInit {
-  submit = false;
-  formGrp: FormGroup = new FormGroup({});
+  imageSrc!: string;
+  myForm = new FormGroup({
+    postTitle: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
 
-  // postTitle:any;
-  // postDescription:any;
+    postImage: new FormControl('', [Validators.required]),
 
+    postDescription: new FormControl('', [Validators.required]),
 
-  constructor(private BlogServ : BlogService, private fb: FormBuilder) { 
-    this.formGrp = this.fb.group(
-      {
-        postTitle: ['',[Validators.required]],
-        postDescription: ['',[Validators.required]],
-        // postImage:['',[Validators.required]]
-      }
-    );
-  }
+    fileSource: new FormControl('', [Validators.required]),
+  });
+
+  constructor(
+    private BlogServ: BlogService,
+  ) {}
 
   get f() {
-    return this.formGrp.controls;
+    return this.myForm.controls;
+  }
+  onFileChange(event: any) {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [postImage] = event.target.files;
+
+      reader.readAsDataURL(postImage);
+
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+
+        this.myForm.patchValue({
+          fileSource: reader.result,
+        });
+      };
+    }
   }
 
-  ngOnInit(): void { }
+  submit() {
+    console.log(this.myForm.value);
 
-  // blogs : any = [];
-
-  uploadBlog(){
-    this.submit=true
-    if(this.formGrp.invalid){
-      return
-    }
-    var val = {
-      ...this.formGrp.value,
-    }
-    this.BlogServ.postBlog(val).subscribe(res =>{
-      alert(res.toString());
+    this.BlogServ.postBlog(this.myForm.value).subscribe((res)=>{
+      console.log(res);
+      alert('Uploaded Successfully');
     })
   }
 
+  ngOnInit(): void {}
 }
