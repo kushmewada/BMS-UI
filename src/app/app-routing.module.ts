@@ -11,6 +11,7 @@ import { UsrProComponent } from './usr-pro/usr-pro.component';
 import { AttendanceComponent } from './usr-pro/attendance/attendance.component';
 import { LikesComponent } from './blog/likes/likes.component';
 import { FeedBackComponent } from './feed-back/feed-back.component';
+import { CommentsComponent } from './blog/comments/comments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'Me', component: UsrProComponent, canActivate: [AuthGuard] },
   { path: 'leave', component: AttendanceComponent },
   { path: 'likes', component: LikesComponent },
-  { path: 'feedback', component: FeedBackComponent }
+  { path: 'feedback', component: FeedBackComponent },
+  { path: 'comments', component: CommentsComponent },
 
   // { path: '**', redirectTo: 'log-in' },
 ];
