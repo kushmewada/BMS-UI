@@ -43,6 +43,7 @@ export class CreatblogComponent implements OnInit {
       const [postImage] = event.target.files;
 
       reader.readAsDataURL(postImage);
+      // console.log(postImage.name, "My");
 
       reader.onload = () => {
         this.imageSrc = reader.result as string;
@@ -55,10 +56,13 @@ export class CreatblogComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm.value);
+    console.log(this.myForm.value,"My");
+    var path = `C:\\fakepath\\${this.myForm.value.postImage}`;
+      this.myForm.value.postImage = path.replace(/^.*\\/, "");
+      console.log(this.myForm.value.postImage,"fname");
 
     this.BlogServ.postBlog(this.myForm.value).subscribe((res)=>{
-      console.log(res);
+      console.log(res, "responce" );
       alert('Uploaded Successfully');
     })
   }
