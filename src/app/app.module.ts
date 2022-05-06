@@ -25,6 +25,7 @@ import { AttendanceComponent } from './usr-pro/attendance/attendance.component';
 import { CommentsComponent } from './blog/comments/comments.component';
 import { LikesComponent } from './blog/likes/likes.component';
 import { FooterComponent } from './footer/footer.component';
+import { AttenComponent } from './atten/atten.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { FooterComponent } from './footer/footer.component';
     CommentsComponent,
     LikesComponent,
     FooterComponent,
+    AttenComponent,
     
     
   ],
