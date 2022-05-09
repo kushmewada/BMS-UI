@@ -45,6 +45,9 @@
                     Timings
                 </p>
                 <div class="row no-gutters my-1">
+                    <p _ngcontent-ocg-c60="" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+                        10:00Am to 7:00Pm 
+                    </p>
                     <div class="col-12 progress my-2">
                         <div class="w-100 bg-gray-700"></div>
                         <div class="w-25 bg-accent-aqua-light"></div>
@@ -73,7 +76,8 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" (click)="punch()" >Punch</button>
+    <button class="btn btn-primary" (click)="punchIn()"  >Punch</button>
+    <button class="btn btn-danger my-3" (click)="punchOut()">Out</button>
     <div _ngcontent-ocg-c60="" class="w-full overflow-hidden rounded-lg shadow-xs">
         <div _ngcontent-ocg-c60="" class="w-full overflow-x-auto">
             <table _ngcontent-ocg-c60="" class="w-full whitespace-no-wrap">
@@ -104,10 +108,10 @@
                         <td _ngcontent-ocg-c60="" class="px-4 py-3 text-xs">
                             <span _ngcontent-ocg-c60=""
                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{curTime}}
+                                {{inTime | date:'mediumTime' }}
                             </span>
                         </td>
-                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">6/10/2020</td>
+                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">{{outTime | date:'mediumTime'}}</td>
                     </tr>
                 </tbody>
             </table>

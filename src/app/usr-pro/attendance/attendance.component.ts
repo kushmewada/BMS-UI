@@ -15,17 +15,19 @@ export class AttendanceComponent implements OnInit {
   rxTime = new Date();
 
   stf:any=[];
-  curTime:any;
+  inTime:any;
+  outTime:any;
+
 
   
   constructor(private users:UserService) {}
 
   ngOnInit(): void {
 
-    this.users.staff().subscribe((resp:any)=>{
-      this.stf = resp.data.length
-      console.log(this.stf,"My data");
-    });
+    // this.users.staff().subscribe((resp:any)=>{
+    //   this.stf = resp.data.length
+    //   console.log(this.stf,"My data");
+    // });
 
     this.subscription = timer(0, 1000)
       .pipe(
@@ -66,12 +68,18 @@ export class AttendanceComponent implements OnInit {
     }
   }
 
-  punch(){
-    this.curTime=this.rxTime.toTimeString();
-    console.log(this.curTime)
+  punchIn(){
+    console.log(this.dates[8],"today date")
+    if (this.rxTime == this.dates.data) {
+      console.log("hello")
+    }
+    this.inTime=this.rxTime.toString();
+    console.log(this.inTime,"in time");
   }
 
-  
-   
-  
+  punchOut(){
+    this.outTime=this.rxTime.toString();
+    console.log(this.outTime, "Out Time");
+  }
+
 }
