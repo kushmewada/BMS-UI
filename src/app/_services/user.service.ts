@@ -17,4 +17,9 @@ export class UserService {
     // console.log("user id from blog api", user_id);
     return this.http.get<any[]>(`${environment.APIUrl}user/profile/?user_id=${user_id}`);
   }
+
+ staff(): Observable<any[]>{
+  var user_id = localStorage.getItem('myuserId')
+  return this.http.get<any[]>(`${environment.APIUrl}user/?user_id=${user_id}`);
+ }
 }

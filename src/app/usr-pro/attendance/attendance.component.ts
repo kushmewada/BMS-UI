@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { map, share, Subscription, timer } from 'rxjs';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-attendance',
@@ -12,10 +13,20 @@ export class AttendanceComponent implements OnInit {
   intervalId:any;
   subscription!: Subscription;
   rxTime = new Date();
+
+  stf:any=[];
+  curTime:any;
+
   
-  constructor() {}
+  constructor(private users:UserService) {}
 
   ngOnInit(): void {
+
+    this.users.staff().subscribe((resp:any)=>{
+      this.stf = resp.data.length
+      console.log(this.stf,"My data");
+    });
+
     this.subscription = timer(0, 1000)
       .pipe(
         map(() => new Date()),
@@ -54,4 +65,13 @@ export class AttendanceComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
+  punch(){
+    this.curTime=this.rxTime.toTimeString();
+    console.log(this.curTime)
+  }
+
+  
+   
+  
 }
