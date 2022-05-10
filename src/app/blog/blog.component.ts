@@ -39,14 +39,13 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
 
     this.blogserv.getBlog().subscribe((resp: any) => {
-      // console.log(resp, 'resp');
+      // console.log(resp, 'resp'); 
       this.blogList = resp.data.blogs_detail;
       // this.blogImag = []
       // this.blogImag.push(resp.data.blogs_detail)
-      this.blogId = this.blogList.map((a:any)=>a.blog_id)
       // dataArrayconsole.log(JSON.stringify(data1, null , 2));
       // this.blogList =resp.data.blogs_detail;
-      console.log(this.blogId, 'dataArray');
+      
       console.log(this.blogList, 'blogList');
       localStorage.setItem('blogId', this.blogId);
     });

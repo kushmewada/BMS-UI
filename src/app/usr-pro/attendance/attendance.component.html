@@ -14,7 +14,7 @@
                     Total Staff
                 </p>
                 <p _ngcontent-ocg-c60="" class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{ stf }}
+                    {{stf}}
                 </p>
             </div>
         </div>
@@ -80,10 +80,11 @@
             </div>
         </div>
     </div>
-    <div class="containor">
-        <button class="btn btn-primary" (click)="punchIn()"  [hidden]="punch">Punch</button>
-        <button class="btn btn-danger mx-3" (click)="punchOut()" [hidden]="!punch">Out</button>
+    <div class="container">
+        <button class="btn btn-primary" (click)="punchIn()" *ngIf="status != true">Punch</button>
+        <button class="btn btn-danger mx-3" (click)="punchOut()" *ngIf="status == true" >Out</button>
     </div>
+
     <div _ngcontent-ocg-c60="" class="w-full overflow-hidden rounded-lg shadow-xs">
         <div _ngcontent-ocg-c60="" class="w-full overflow-x-auto">
             <table _ngcontent-ocg-c60="" class="w-full whitespace-no-wrap">
@@ -91,7 +92,7 @@
                     <tr _ngcontent-ocg-c60=""
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">Date</th>
-                        <th _ngcontent-ocg-c60="" class="px-4 py-3">Totle Time Duration</th>
+                        <th _ngcontent-ocg-c60="" class="px-4 py-3">Attendance</th>
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">Punch in</th>
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">punc out</th>
                     </tr>
@@ -105,24 +106,22 @@
                                         {{ date | date: "MMM, dd,EE " }}
                                     </p>
                                     <p _ngcontent-ocg-c60="" class="text-xs text-gray-600 dark:text-gray-400">
-                                        {{ user }}
+                                        {{user}}
                                     </p>
                                 </div>
                             </div>
                         </td>
-                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">
-                            {{ timeGape }}
-                        </td>
+                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">$ 863.45</td>
                         <td _ngcontent-ocg-c60="" class="px-4 py-3 text-xs">
-                            <span _ngcontent-ocg-c60="" *ngIf="demo == demo2"
+                            <span _ngcontent-ocg-c60=""
                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{ inTime | date: "mediumTime" }}
+                                {{inTime | date:'mediumTime' }}
                             </span>
                         </td>
                         <td _ngcontent-ocg-c60="" class="px-4 py-3 text-xs">
                             <span _ngcontent-ocg-c60=""
                                 class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
-                                {{ outTime | date: "mediumTime" }}
+                                {{outTime | date:'mediumTime' }}
                             </span>
                         </td>
                     </tr>

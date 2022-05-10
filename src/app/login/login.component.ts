@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
         var alertMsg = data.alert;
         var result = data.result;
         console.log(alertMsg);
+        var get = data.data.access
+        localStorage.setItem('session', get);
         // alert(alertMsg.toString(alert));
         if (result === true) {
           this.user1 = data;
@@ -68,7 +70,7 @@ export class LoginComponent implements OnInit {
           this.userId = this.user1.data.id;
           this.toastrService.success(alertMsg);
           this.router.navigate([this.returnUrl]);
-          localStorage.setItem('myuserId', this.userId);
+          // localStorage.setItem('myuserId', this.userId);
           // console.log(this.userId, '<-----User id login view');
         }
         else{

@@ -23,10 +23,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(username: string, password: string) {
+  login(email: string, password: string) {
     return this.http
-      .post<any>(`${environment.APIUrl}user/login/`, {
-        username,
+      .post<any>(`${environment.APIUrl}auth/login/`, {
+        email,
         password,
       })
       .pipe(
@@ -47,11 +47,13 @@ export class AuthenticationService {
     localStorage.removeItem('myuserId');
     this.loggedIn.next(false);
     this.currentUserSubject.next(null!);
-    var user_id = localStorage.getItem('myuserId')
-    return this.http.get(`${environment.APIUrl}user/logout/?user_id=${user_id}`);
+    var user_id = localStorage.getItem('myuserId');
+    return this.http.get(
+      `${environment.APIUrl}user/logout/?user_id=${user_id}`
+    );
   }
 
   signUp(val: any) {
-    return this.http.post(`${environment.APIUrl}user/signup/`, val);
+    return this.http.post(`${environment.APIUrl}auth/signup/`, val);
   }
 }

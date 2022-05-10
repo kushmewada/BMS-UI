@@ -13,10 +13,10 @@ export class BlogService {
   constructor(private http : HttpClient) { }
   
   postBlog(val:any) {
-    var user_id = localStorage.getItem('myuserId')
+    var session = localStorage.getItem('session')
     // console.log("user id from blog api", user_id);
     // const blg : Blog[]=[{postTitle:'', postImage:'',postDescription:''}];
-    return this.http.post(`${environment.APIUrl}blog/?user_id=${user_id}`,val);
+    return this.http.post(`${environment.APIUrl}blog/?key=${session}`,val);
   }
 
   // UploadPhoto(val: any) {
@@ -26,9 +26,9 @@ export class BlogService {
   // }
 
   getBlog():Observable<any[]>{
-    var user_id = localStorage.getItem('myuserId')
+    var session = localStorage.getItem('session')
     // console.log("user id from blog api", user_id);
-    return this.http.get<any[]>(`${environment.APIUrl}blog/?user_id=${user_id}`);
+    return this.http.get<any[]>(`${environment.APIUrl}blog/?key=${session}`);
   }
 
   likeBlog(val:any){

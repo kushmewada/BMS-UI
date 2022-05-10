@@ -12,4 +12,9 @@ export class PunchService {
   punchIn(val : any){
     return this.http.post(`${environment.APIUrl}me/attendance/`,val);
   }
+
+  getPunch(){
+    const session = localStorage.getItem('session')
+    return this.http.get(`${environment.APIUrl}me/all-attendance/?key=${session}`);
+  }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map, share, Subscription, timer } from 'rxjs';
-import * as moment from 'moment/moment';
 
 import { UserService } from 'src/app/_services/user.service';
+import { PunchService } from 'src/app/_services/punch.service';
 
 @Component({
   selector: 'app-attendance',
@@ -11,44 +11,49 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class AttendanceComponent implements OnInit {
   dates: any = [];
-  punch = false;
 
-  intervalId: any;
+  intervalId:any;
   subscription!: Subscription;
   rxTime = new Date();
 
-  stf: any = [];
-  inTime: any;
-  outTime: any;
-  demo: any;
-  demo2: any;
-  timeGape: any;
+  stf:any=[];
+  inTime:any;
+  outTime:any;
 
-  user = 'Chirag';
+  status = false
+  punchs :any = [];
 
-  constructor(private users: UserService) {}
+  user="Chirag"
+
+
   
+  constructor(private users:UserService, private punch: PunchService) {
+    this.punch.getPunch().subscribe((data:any)=>{
+      console.log(data.data);
+      this.punchs = data.data
+    })
+  }
 
   ngOnInit(): void {
-    this.users.staff().subscribe((resp:any)=>{
-      this.stf = resp.data.length
-      console.log(this.stf,"My data");
-    });
-    
 
-    // this.subscription = timer(0, 1000)
-    //   .pipe(
-    //     map(() => new Date()),
-    //     share()
-    //   )
-    //   .subscribe((time) => {
-    //     this.rxTime = time;
-    //   });
+    // this.users.staff().subscribe((resp:any)=>{
+    //   this.stf = resp.data.length
+    //   console.log(this.stf,"My data");
+    // });
+
+    this.subscription = timer(0, 1000)
+      .pipe(
+        map(() => new Date()),
+        share()
+      )
+      .subscribe(time => {
+        this.rxTime = time;
+      });
 
     const getAllDaysInMonth = (month: any, year: any) =>
       Array.from(
-        { length: new Date(year, month, 0).getDate() },
-        (_, i) => new Date(year, month - 1, i + 1)
+        { length: new Date(year, month, 0).getDate() }, 
+        (_, i) => new Date(year, month - 1, i + 1),
       );
 
     var month = (new Date().getMonth() + 1).toString().slice(-2);
@@ -56,12 +61,12 @@ export class AttendanceComponent implements OnInit {
     var year = new Date().getFullYear().toString();
     // console.log(d)
 
-    const allDates = getAllDaysInMonth(month, year);
+    const allDatesInOctober = getAllDaysInMonth(month, year);
 
-    this.dates = allDates;
+    this.dates = allDatesInOctober;
 
     console.log(
-      allDates.map((x) =>
+      allDatesInOctober.map((x) =>
         x.toLocaleDateString([], { month: 'short', day: 'numeric' })
       )
     );
@@ -75,24 +80,36 @@ export class AttendanceComponent implements OnInit {
     }
   }
 
-  punchIn() {
-    this.punch = true;
-    this.inTime = this.rxTime.toString();
-    this.demo = this.rxTime.toDateString();
-    this.demo2 = this.dates[9].toDateString();
-    if (this.inTime == this.demo) {
-      console.log(this.inTime, 'in time chack status ok');
-      console.log(this.dates[9].toDateString(), 'today date Chack status ok');
+  punchIn(){
+    this.status = true;
+    // this.inTime=this.rxTime.toString();
+    // console.log(this.inTime,"in time");
+    // console.log(this.dates[8],"today date")
+    // console.log(this.dates.indexOf((x:any) => x === this.rxTime));
+    var key =   localStorage.getItem('session')
+    var punch_status = 1 
+    var val = {
+      key,
+      punch_status
     }
-    console.log(this.inTime, 'in time chack');
-    // console.log(this.dates[9].toString(), 'today date Chack');
-    // console.log(this.dates.indexOf((x:any) => x === this.rxTime)); 
+    this.punch.punchIn(val).subscribe((resp:any)=>{
+      console.log(resp);
+    })
   }
 
-  punchOut() {
-    this.punch = false;
-    this.outTime = this.rxTime.toString();
-    console.log(this.outTime, 'Out Time');
+  punchOut(){
+    this.status = false
+    // this.outTime=this.rxTime.toString();
+    // console.log(this.outTime, "Out Time");
+    var key =   localStorage.getItem('session')
+    var punch_status = 0
+    var val = {
+      key,
+      punch_status
+    }
+    this.punch.punchIn(val).subscribe((resp:any)=>{
+      console.log(resp);
+    })
   }
 
 }
