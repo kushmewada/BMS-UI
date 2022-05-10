@@ -5,15 +5,16 @@
             <div _ngcontent-ocg-c60=""
                 class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                  </svg>
+                    <path
+                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                </svg>
             </div>
             <div _ngcontent-ocg-c60="">
                 <p _ngcontent-ocg-c60="" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
                     Total Staff
                 </p>
                 <p _ngcontent-ocg-c60="" class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                    {{stf}}
+                    {{ stf }}
                 </p>
             </div>
         </div>
@@ -21,8 +22,9 @@
             <div _ngcontent-ocg-c60=""
                 class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                  </svg>
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clip-rule="evenodd" />
+                </svg>
             </div>
             <div _ngcontent-ocg-c60="">
                 <p _ngcontent-ocg-c60="" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -37,8 +39,10 @@
             <div _ngcontent-ocg-c60=""
                 class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                  </svg>
+                    <path fill-rule="evenodd"
+                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                        clip-rule="evenodd" />
+                </svg>
             </div>
             <div _ngcontent-ocg-c60="">
                 <p _ngcontent-ocg-c60="" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -46,7 +50,7 @@
                 </p>
                 <div class="row no-gutters my-1">
                     <p _ngcontent-ocg-c60="" class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                        10:00Am to 7:00Pm 
+                        10:00Am to 7:00Pm
                     </p>
                     <div class="col-12 progress my-2">
                         <div class="w-100 bg-gray-700"></div>
@@ -76,8 +80,10 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" (click)="punchIn()"  >Punch</button>
-    <button class="btn btn-danger my-3" (click)="punchOut()">Out</button>
+    <div class="containor">
+        <button class="btn btn-primary" (click)="punchIn()"  [hidden]="punch">Punch</button>
+        <button class="btn btn-danger mx-3" (click)="punchOut()" [hidden]="!punch">Out</button>
+    </div>
     <div _ngcontent-ocg-c60="" class="w-full overflow-hidden rounded-lg shadow-xs">
         <div _ngcontent-ocg-c60="" class="w-full overflow-x-auto">
             <table _ngcontent-ocg-c60="" class="w-full whitespace-no-wrap">
@@ -85,7 +91,7 @@
                     <tr _ngcontent-ocg-c60=""
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">Date</th>
-                        <th _ngcontent-ocg-c60="" class="px-4 py-3">Attendance</th>
+                        <th _ngcontent-ocg-c60="" class="px-4 py-3">Totle Time Duration</th>
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">Punch in</th>
                         <th _ngcontent-ocg-c60="" class="px-4 py-3">punc out</th>
                     </tr>
@@ -99,19 +105,26 @@
                                         {{ date | date: "MMM, dd,EE " }}
                                     </p>
                                     <p _ngcontent-ocg-c60="" class="text-xs text-gray-600 dark:text-gray-400">
-                                        10x Developer
+                                        {{ user }}
                                     </p>
                                 </div>
                             </div>
                         </td>
-                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">$ 863.45</td>
+                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">
+                            {{ timeGape }}
+                        </td>
                         <td _ngcontent-ocg-c60="" class="px-4 py-3 text-xs">
-                            <span _ngcontent-ocg-c60=""
+                            <span _ngcontent-ocg-c60="" *ngIf="demo == demo2"
                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{inTime | date:'mediumTime' }}
+                                {{ inTime | date: "mediumTime" }}
                             </span>
                         </td>
-                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-sm">{{outTime | date:'mediumTime'}}</td>
+                        <td _ngcontent-ocg-c60="" class="px-4 py-3 text-xs">
+                            <span _ngcontent-ocg-c60=""
+                                class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                                {{ outTime | date: "mediumTime" }}
+                            </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
