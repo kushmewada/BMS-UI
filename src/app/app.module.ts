@@ -28,6 +28,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AttenComponent } from './atten/atten.component';
 import { FeedBackComponent } from './feed-back/feed-back.component';
 import { MsgComponent } from './feed-back/msg/msg.component';
+import { PunchTimePipe } from './_pipe/punch-time.pipe';
 
 
 
@@ -49,6 +50,7 @@ import { MsgComponent } from './feed-back/msg/msg.component';
     AttenComponent,
     FeedBackComponent,
     MsgComponent,
+    PunchTimePipe,
   ],
   imports: [
     BrowserModule,
