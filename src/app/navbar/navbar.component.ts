@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   currentUser!: User;
   nav = true
   isLoggedIn$: Observable<boolean> | undefined;  
+  session : any
 
   constructor(private router:Router, private service:AuthenticationService){
     this.service.currentUser.subscribe(x=>this.currentUser = x);
@@ -24,10 +25,16 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.service.logout().subscribe((resp:any) => {
+
+    var key = localStorage.getItem('session')
+    var val = {
+      key
+    }
+
+    this.service.logout(val).subscribe((resp:any) => {
       this.nav = false
       if (resp.success) {
-        console.log(resp,'77777777777777');
+        // console.log(resp,'77777777777777');
       }
     });
     this.router.navigate(['log-in']);

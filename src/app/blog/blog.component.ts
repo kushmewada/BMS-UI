@@ -47,7 +47,7 @@ export class BlogComponent implements OnInit {
       // this.blogList =resp.data.blogs_detail;
       
       console.log(this.blogList, 'blogList');
-      localStorage.setItem('blogId', this.blogId);
+      // localStorage.setItem('blogId', this.blogId);
     });
   }
 

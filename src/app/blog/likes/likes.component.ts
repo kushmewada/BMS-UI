@@ -41,7 +41,7 @@ export class LikesComponent implements OnInit {
       // this.blogList =resp.data.blogs_detail;
       console.log(this.blogId, 'dataArray');
       console.log(this.blogList, 'blogList');
-      localStorage.setItem('blogId', this.blogId);
+      // localStorage.setItem('blogId', this.blogId);
     });
   }
 

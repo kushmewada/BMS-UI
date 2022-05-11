@@ -24,13 +24,13 @@ export class AppComponent implements OnInit {
     this.isLoggedIn$ = this.service.isLoggedIn; // {2}
   }
 
-  logout() {
-    this.service.logout().subscribe((resp:any) => {
-      this.nav = false
-      if (resp.success) {
-        console.log(resp,'77777777777777');
-      }
-    });
-    this.router.navigate(['log-in']);
-}
+//   logout() {
+//     this.service.logout().subscribe((resp:any) => {
+//       this.nav = false
+//       if (resp.success) {
+//         console.log(resp,'77777777777777');
+//       }
+//     });
+//     this.router.navigate(['log-in']);
+// }
 }

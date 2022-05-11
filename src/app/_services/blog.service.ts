@@ -16,7 +16,7 @@ export class BlogService {
     var session = localStorage.getItem('session')
     // console.log("user id from blog api", user_id);
     // const blg : Blog[]=[{postTitle:'', postImage:'',postDescription:''}];
-    return this.http.post(`${environment.APIUrl}blog/?key=${session}`,val);
+    return this.http.post(`${environment.APIUrl}blog/`,val);
   }
 
   // UploadPhoto(val: any) {

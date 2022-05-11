@@ -60,8 +60,19 @@ export class CreatblogComponent implements OnInit {
     var path = `C:\\fakepath\\${this.myForm.value.postImage}`;
       this.myForm.value.postImage = path.replace(/^.*\\/, "");
       console.log(this.myForm.value.postImage,"fname");
+      var formValue = this.myForm.value;
+      // console.log(formValue,"my form data");
+      var key = localStorage.getItem('session')
+      var postDescription = formValue.postDescription
+      var postTitle = formValue.postTitle
+      var val = {
+        // formValue,
+        key,
+        postDescription,
+        postTitle
+      }
 
-    this.BlogServ.postBlog(this.myForm.value).subscribe((res)=>{
+    this.BlogServ.postBlog(val).subscribe((res)=>{
       console.log(res, "responce" );
       alert('Uploaded Successfully');
     })

@@ -20,7 +20,7 @@ export class AttendanceComponent implements OnInit {
   inTime:any;
   outTime:any;
 
-  status = false
+  status:boolean = false
   punchs :any = [];
 
   user="Chirag"
@@ -81,7 +81,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   punchIn(){
-    this.status = true;
+    this.status = ! this.status;
     // this.inTime=this.rxTime.toString();
     // console.log(this.inTime,"in time");
     // console.log(this.dates[8],"today date")
@@ -98,7 +98,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   punchOut(){
-    this.status = false
+    this.status = this.status
     // this.outTime=this.rxTime.toString();
     // console.log(this.outTime, "Out Time");
     var key =   localStorage.getItem('session')

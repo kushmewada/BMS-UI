@@ -42,15 +42,8 @@ export class AuthenticationService {
     return this.loggedIn.asObservable(); // {2}
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('myuserId');
-    this.loggedIn.next(false);
-    this.currentUserSubject.next(null!);
-    var user_id = localStorage.getItem('myuserId');
-    return this.http.get(
-      `${environment.APIUrl}user/logout/?user_id=${user_id}`
-    );
+  logout(val1:any){
+    return this.http.post(`${environment.APIUrl}auth/logout/`,val1);
   }
 
   signUp(val: any) {
