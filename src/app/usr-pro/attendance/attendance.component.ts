@@ -90,10 +90,10 @@ export class AttendanceComponent implements OnInit {
     // console.log(this.inTime,"in time");
     // console.log(this.dates[8],"today date")
     // console.log(this.dates.indexOf((x:any) => x === this.rxTime));
-    var key = localStorage.getItem('session');
+    // var key = localStorage.getItem('session');
     var punch_status = 1;
     var val = {
-      key,
+      // key,
       punch_status,
     };
     this.punch.punchIn(val).subscribe((resp: any) => {
@@ -105,10 +105,10 @@ export class AttendanceComponent implements OnInit {
     this.status = false;
     // this.outTime=this.rxTime.toString();
     // console.log(this.outTime, "Out Time");
-    var key = localStorage.getItem('session');
+    // var key = localStorage.getItem('session');
     var punch_status = 0;
     var val = {
-      key,
+      // key,
       punch_status,
     };
     this.punch.punchIn(val).subscribe((resp: any) => {

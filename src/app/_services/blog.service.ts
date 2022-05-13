@@ -30,9 +30,15 @@ export class BlogService {
   // }
 
   getBlog(): Observable<any[]> {
-    var session = localStorage.getItem('session');
+    // var session = localStorage.getItem('session');
     // console.log("user id from blog api", user_id);
-    return this.http.get<any[]>(`${environment.APIUrl}blog/?key=${session}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization' : localStorage.getItem('session' ) || '',
+      }),
+    };
+    return this.http.get<any[]>(`${environment.APIUrl}blog/`, httpOptions);
   }
 
   likeBlog(val: any) {
