@@ -65,11 +65,13 @@ export class CreatblogComponent implements OnInit {
       var key = localStorage.getItem('session')
       var postDescription = formValue.postDescription
       var postTitle = formValue.postTitle
+      var postImage = formValue.postImage
       var val = {
         // formValue,
         key,
         postDescription,
-        postTitle
+        postTitle,
+        postImage
       }
 
     this.BlogServ.postBlog(val).subscribe((res)=>{
