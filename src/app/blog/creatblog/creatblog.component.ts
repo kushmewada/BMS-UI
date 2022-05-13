@@ -62,13 +62,13 @@ export class CreatblogComponent implements OnInit {
       console.log(this.myForm.value.postImage,"fname");
       var formValue = this.myForm.value;
       // console.log(formValue,"my form data");
-      var key = localStorage.getItem('session')
+      // var key = localStorage.getItem('session')
       var postDescription = formValue.postDescription
       var postTitle = formValue.postTitle
       var postImage = formValue.postImage
       var val = {
         // formValue,
-        key,
+        // key,
         postDescription,
         postTitle,
         postImage
