@@ -37,4 +37,13 @@ export class UsrProComponent implements OnInit {
     });
   }
 
+  addProfile(){
+    var val = {
+      
+    }
+    this.userserv.addProf(val).subscribe((resp:any)=>{
+      console.log(resp,"ok status")
+    })
+  }
+
 }

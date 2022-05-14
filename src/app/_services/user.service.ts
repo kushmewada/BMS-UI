@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user.model';
@@ -15,11 +15,27 @@ export class UserService {
     // console.log( localStorage.getItem('myuserId'),'<----from userProfile Api side');
     var user_id = localStorage.getItem('myuserId')
     // console.log("user id from blog api", user_id);
-    return this.http.get<any[]>(`${environment.APIUrl}user/profile/?user_id=${user_id}`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization' : localStorage.getItem('session' ) || '',
+      }),
+    };
+    return this.http.get<any[]>(`${environment.APIUrl}users/profile/`,httpOptions);
   }
 
  staff(): Observable<any[]>{
   var user_id = localStorage.getItem('myuserId')
   return this.http.get<any[]>(`${environment.APIUrl}user/?user_id=${user_id}`);
+ }
+
+ addProf( val :any ){
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization' : localStorage.getItem('session' ) || '',
+    }),
+  };
+   return this.http.put(`${environment.APIUrl}users/profile/`,val, httpOptions);
  }
 }
