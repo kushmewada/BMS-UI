@@ -44,4 +44,11 @@ export class BlogService {
   likeBlog(val: any) {
     return this.http.post(`${environment.APIUrl}blog/like/`, val);
   }
+
+  deleteBlog(){
+    var user_id = localStorage.getItem('user_id')
+    var blog_id = 1
+    var key = localStorage.getItem('session')
+    return this.http.delete(`${environment.APIUrl}blog/?user_id=${user_id}&blog_id=${blog_id}&key=${key}`)
+  }
 }

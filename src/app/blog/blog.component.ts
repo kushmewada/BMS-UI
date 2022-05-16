@@ -45,7 +45,6 @@ export class BlogComponent implements OnInit {
       // this.blogImag.push(resp.data.blogs_detail)
       // dataArrayconsole.log(JSON.stringify(data1, null , 2));
       // this.blogList =resp.data.blogs_detail;
-      
       console.log(this.blogList, 'blogList');
       // localStorage.setItem('blogId', this.blogId);
     });
@@ -53,5 +52,11 @@ export class BlogComponent implements OnInit {
 
   createBlog() {
     this.router.navigate(['creatBlog']);
+  }
+
+  DeleteBlog(){
+    this.blogserv.deleteBlog().subscribe((resp:any)=>{
+      console.log(resp,"delete resp");
+    })
   }
 }
