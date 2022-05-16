@@ -1,12 +1,45 @@
 <router-outlet></router-outlet>
 <app-navbar></app-navbar>
 <div class="container">
-    <button
+    <!-- <button
         class="btn btn-success float-right my-3"
         (click)="createBlog()">
         creat Blog
-    </button>
+    </button> -->
+    <button type="button"
+    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-3 py-2.5 text-center mr-2 mb-2 float-right my-3"
+    data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add
+</button>
 </div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">
+                 Add Profile
+             </h5>
+             <button type="button" class="btn-close" data-bs-dismiss="modal"
+                 aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <app-creatblog></app-creatblog>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                 Close
+             </button>
+             <button type="button" class="btn btn-primary">
+                 Save changes
+             </button>
+         </div>
+     </div>
+ </div>
+</div>
+
 
 <div class="container mx-auto my-10 sm:px-20 flex justify-center" *ngFor="let blog of blogList">
     <!--  Post  -->
