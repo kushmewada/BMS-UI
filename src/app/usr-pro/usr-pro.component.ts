@@ -32,6 +32,7 @@ export class UsrProComponent implements OnInit {
         this.getdata.push(resp.data);
         console.log(data,"hello")
         let user_id=data.id
+        console.log(user_id,"user_id")
         localStorage.setItem('user_id',user_id);
         // console.log(data, "data of array formate")
         return data

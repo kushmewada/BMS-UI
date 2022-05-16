@@ -39,7 +39,9 @@ export class AuthenticationService {
       );
   }
   get isLoggedIn() {
+    localStorage.removeItem('user_id')
     return this.loggedIn.asObservable(); // {2}
+    
   }
 
   logout(val1:any){
