@@ -29,7 +29,7 @@ export class UserService {
   return this.http.get<any[]>(`${environment.APIUrl}user/?user_id=${user_id}`);
  }
 
- addProf( val :any ){
+ upDatePro( val :any ){
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

@@ -35,17 +35,6 @@ export class UsrProComponent implements OnInit {
         localStorage.setItem('user_id',user_id);
         // console.log(data, "data of array formate")
         return data
-      
     });
   }
-
-  addProfile(){
-    var val = {
-      
-    }
-    this.userserv.addProf(val).subscribe((resp:any)=>{
-      console.log(resp,"ok status")
-    })
-  }
-
 }
