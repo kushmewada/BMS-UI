@@ -30,6 +30,7 @@ import { FeedBackComponent } from './feed-back/feed-back.component';
 import { MsgComponent } from './feed-back/msg/msg.component';
 import { PunchTimePipe } from './_pipe/punch-time.pipe';
 import { UpdateProComponent } from './usr-pro/update-pro/update-pro.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -53,6 +54,7 @@ import { UpdateProComponent } from './usr-pro/update-pro/update-pro.component';
     MsgComponent,
     PunchTimePipe,
     UpdateProComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

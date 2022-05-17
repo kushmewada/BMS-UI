@@ -14,6 +14,7 @@ import { FeedBackComponent } from './feed-back/feed-back.component';
 import { CommentsComponent } from './blog/comments/comments.component';
 import { MsgComponent } from './feed-back/msg/msg.component';
 import { UpdateProComponent } from './usr-pro/update-pro/update-pro.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/log-in', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'comments', component: CommentsComponent },
   {path: 'msg', component:MsgComponent},
   {path: 'updatePro', component:UpdateProComponent},
+  {path: 'about', component:AboutComponent},
 
   // { path: '**', redirectTo: 'log-in' },
 ];
