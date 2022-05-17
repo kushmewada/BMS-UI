@@ -13,7 +13,7 @@ export class UserService {
 
   getAll(): Observable<any[]>{
     // console.log( localStorage.getItem('myuserId'),'<----from userProfile Api side');
-    var user_id = localStorage.getItem('user_id')
+    var user_id = localStorage.getItem('userid')
     // console.log("user id from blog api", user_id);
     const httpOptions = {
       headers: new HttpHeaders({
@@ -21,7 +21,7 @@ export class UserService {
         'Authorization' : localStorage.getItem('session' ) || '',
       }),
     };
-    return this.http.get<any[]>(`${environment.APIUrl}users/profile/?user_id=${1}`,httpOptions);
+    return this.http.get<any[]>(`${environment.APIUrl}users/profile/?user_id=${user_id}`,httpOptions);
   }
 
  staff(): Observable<any[]>{

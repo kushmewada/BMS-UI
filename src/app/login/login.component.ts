@@ -60,10 +60,13 @@ export class LoginComponent implements OnInit {
       .subscribe((data) => {
         var alertMsg = data.alert;
         var result = data.result;
-        console.log(alertMsg);
-        var get = data.data.access
+        var get = data.data.access;
         localStorage.setItem('session', get);
         // alert(alertMsg.toString(alert));
+        var user_id = data.data.id;
+        console.log(user_id,"user_id")
+        // localStorage.setItem('user_id', user_id);
+        localStorage.setItem('userid',data.data.id)
         if (result === true) {
           this.user1 = data;
           // console.log(this.user1,"me");
@@ -72,12 +75,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate([this.returnUrl]);
           // localStorage.setItem('myuserId', this.userId);
           // console.log(this.userId, '<-----User id login view');
-        }
-        else{
+        } else {
           this.loading = false;
           this.toastrService.error(alertMsg);
-         }
-        
+        }
       });
   }
 }

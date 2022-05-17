@@ -18,6 +18,13 @@ export class UpdateProComponent implements OnInit {
     lastName : new FormControl('',[]),
     image : new FormControl('',[]),
     address: new FormControl('',[]),
+    city: new FormControl('',[]),
+    state: new FormControl('',[]),
+    about: new FormControl('',[]),
+    country: new FormControl('',[]),
+    birthDate: new FormControl('',[]),
+    dateOfJoining: new FormControl('',[]),
+    jonTittle: new FormControl('',[]),
   })
 
   get f() {
@@ -28,18 +35,33 @@ export class UpdateProComponent implements OnInit {
     var formValue = this.myForm.value;
     var firstName = formValue.firstName;
     var lastName = formValue.lastName;
-    var image = formValue.image;
+    // var image = formValue.image;
     var address = formValue.address;
+    var city = formValue.city;
+    var state = formValue.state;
+    var about = formValue.about;
+    var country = formValue.country;
+    var birthDate = formValue.birthDate;
+    var dateOfJoining = formValue.dateOfJoining;
+    var jonTittle = formValue.jonTittle;
     var user_id = localStorage.getItem('user_id')
     var val = {
       firstName,
       lastName,
-      image,
+      // image,
       address,
-      user_id
+      user_id,
+      city,
+      state,
+      about,
+      country,
+      birthDate,
+      dateOfJoining,
+      jonTittle
     }
     this.UserServ.upDatePro(val).subscribe((resp)=>{
       console.log(resp,"Update Profile data")
+      alert("Update Success")
     })
   }
   ngOnInit(): void {

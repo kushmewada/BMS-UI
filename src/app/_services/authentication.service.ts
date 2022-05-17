@@ -39,12 +39,13 @@ export class AuthenticationService {
       );
   }
   get isLoggedIn() {
-    localStorage.removeItem('user_id')
     return this.loggedIn.asObservable(); // {2}
     
   }
 
   logout(val1:any){
+    localStorage.removeItem('userid')
+    localStorage.removeItem('session')
     return this.http.post(`${environment.APIUrl}auth/logout/`,val1);
   }
 
