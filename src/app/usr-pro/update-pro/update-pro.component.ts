@@ -44,7 +44,7 @@ export class UpdateProComponent implements OnInit {
     var birthDate = formValue.birthDate;
     var dateOfJoining = formValue.dateOfJoining;
     var jonTittle = formValue.jonTittle;
-    var user_id = localStorage.getItem('user_id')
+    var user_id = localStorage.getItem('userid')
     var val = {
       firstName,
       lastName,

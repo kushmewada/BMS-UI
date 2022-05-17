@@ -21,9 +21,7 @@ export class FeedBackComponent implements OnInit {
   onFeedback(){
     var formValue = this.myform.value;
     var feedback = formValue.feedback
-    var key = localStorage.getItem('session')
     var val = {
-      key,
       feedback
     }
     this.msgServ.postFeedback(val).subscribe((resp)=>{
