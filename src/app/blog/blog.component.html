@@ -91,7 +91,7 @@
             <div class="mb-2">
                 <!-- *ngfor="let comments of blog?.total_user_comment " -->
                 <div class="mb-2 text-sm" *ngFor="let comment of blog?.blog_comment">
-                    <span class="font-medium mr-2"> {{ comment.name }}:</span>{{ comment.comment }}
+                    <span class="font-medium mr-2"> {{ comment.created_by.firstName }}:</span>{{ comment.comment }}
                 </div>
             </div>
         </div>

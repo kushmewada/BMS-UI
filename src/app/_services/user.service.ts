@@ -38,4 +38,14 @@ export class UserService {
   };
    return this.http.put(`${environment.APIUrl}users/profile/`,val, httpOptions);
  }
+
+ getAllStaff(){
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization' : localStorage.getItem('session' ) || '',
+    }),
+  };
+  return this.http.get(`${environment.APIUrl}users/profile/`,httpOptions);
+ }
 }

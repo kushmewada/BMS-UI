@@ -17,6 +17,7 @@ export class AttendanceComponent implements OnInit {
   rxTime = new Date();
 
   stf: any = [];
+  myStaf:any=[];
   inTime: any;
   outTime: any;
 
@@ -42,6 +43,13 @@ export class AttendanceComponent implements OnInit {
     //   this.stf = resp.data.length
     //   console.log(this.stf,"My data");
     // });
+    
+      this.users.getAllStaff().subscribe((resp:any)=>{
+        this.stf = resp.data
+        this.myStaf = this.stf.length
+        console.log(this.myStaf,"all staff")
+      })
+
 
     //for Live Clock
     this.subscription = timer(0, 1000)
